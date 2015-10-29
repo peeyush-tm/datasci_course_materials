@@ -1,0 +1,8 @@
+select count(*) from (
+select docid from frequency
+where 
+term = "law" 
+union
+select docid from frequency
+where 
+term = "legal" );

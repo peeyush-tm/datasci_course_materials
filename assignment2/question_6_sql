@@ -1,0 +1,11 @@
+select
+    count(t.docid)
+from
+    frequency t
+    , frequency w
+where
+    t.term = 'transactions'
+    and
+    w.term = 'world'
+    and 
+    t.docid = w.docid;

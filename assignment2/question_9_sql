@@ -1,0 +1,25 @@
+      sqlite> CREATE VIEW Keywords AS
+         ...> SELECT * FROM Frequency
+         ...> UNION
+         ...> SELECT 'q' as docid, 'washington' as term, 1 as count
+         ...> UNION
+         ...> SELECT 'q' as docid, 'taxes' as term, 1 as count
+         ...> UNION
+         ...> SELECT 'q' as docid, 'treasury' as term, 1 as count;
+      sqlite> SELECT * FROM (
+         ...>        SELECT b.docid AS docid, SUM(a.countb.count) AS count
+         ...>        FROM Keywords a, Keywords b
+         ...>        WHERE a.docid == 'q' AND a.term == b.term
+         ...>        GROUP BY b.docid)
+         ...> WHERE  count == (SELECT MAX(count) FROM (
+         ...>        SELECT SUM(a.countb.count) AS count
+         ...>        FROM Keywords a, Keywords b
+         ...>        WHERE a.docid == 'q' AND a.term == b.term
+         ...>        GROUP BY b.docid));
+      
+      16094_txt_trade | 6
+      16357_txt_trade | 6
+      19775_txt_interest | 6
+      
+      -- So the highest score in the similarity list is 6.
+   

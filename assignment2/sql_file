@@ -1,0 +1,10 @@
+/**/
+select doc_id, term, count from frequency;
+/**/
+/**/
+select name from sqlite_master where type='table';
+/**/
+/**/
+PRAGMA table_info(Frequency);
+/**/
+
